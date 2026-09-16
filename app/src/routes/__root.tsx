@@ -5,13 +5,11 @@ import {
   createRootRouteWithContext,
   useRouter,
   HeadContent,
-  Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect } from "react";
 import { button } from "@higgsfield/quanta/button";
 import { NotFound } from "@higgsfield/quanta/not-found";
 
-import appCss from "../styles.css?url";
 import { reportHiggsfieldError } from "../lib/higgsfield-error-reporting";
 // Page metadata (browser <title>/favicon + social og: tags) committed into the
 // repo by the marketplace meta API and read at BUILD time — no runtime fetch.
@@ -54,13 +52,13 @@ const APP_HOST_ZONES = ["higgsfield.app", "higgsfield-dev.app"];
 
 function toOwnAssetUrl(value: string | null | undefined): string | null {
   if (!value) return null;
-  if (value.startsWith("/")) return value; // already root-relative
+  if (value.startsWith("/")) return import.meta.env.BASE_URL + value.replace(/^\/+/, ""); // already root-relative
   try {
     const u = new URL(value);
     const isAppHost = APP_HOST_ZONES.some(
       (zone) => u.hostname === zone || u.hostname.endsWith(`.${zone}`),
     );
-    if (isAppHost) return u.pathname + u.search;
+    if (isAppHost) return import.meta.env.BASE_URL + u.pathname.replace(/^\/+/, "") + u.search;
     return value; // external host (CDN, etc.) — keep absolute
   } catch {
     return value; // not a parseable URL — leave as-is
@@ -80,12 +78,11 @@ function buildHead(meta: AppMeta) {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title },
       { name: "description", content: description },
-      { name: "author", content: "Higgsfield" },
+      { name: "author", content: "Luna Pool Co." },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: ogImage ? "summary_large_image" : "summary" },
-      { name: "twitter:site", content: "@Higgsfield" },
       ...(ogImage
         ? [
             { property: "og:image", content: ogImage },
@@ -97,7 +94,6 @@ function buildHead(meta: AppMeta) {
       ...(ogVideo ? [{ property: "og:video", content: ogVideo }] : []),
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
       ...(favicon ? [{ rel: "icon", href: favicon }] : []),
     ],
   };
@@ -144,7 +140,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           >
             Try again
           </button>
-          <a href="/" className={button({ variant: "outline", size: "md" })}>
+          <a href={import.meta.env.BASE_URL} className={button({ variant: "outline", size: "md" })}>
             Go home
           </a>
         </div>
@@ -156,28 +152,11 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   // Read the committed page metadata at build time (no runtime fetch).
   head: () => buildHead(appMeta),
-  shellComponent: RootShell,
+
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en" data-theme="default-dark" style={{ colorScheme: "dark" }}>
-      {/* Marketplace apps are permanently dark: data-theme is pinned on <html>
-          above. Do not add quanta's bootstrapScript/ThemeController, a theme
-          toggle, or a light mode. */}
-      <head>
-        <HeadContent />
-      </head>
-      <body className="bg-q-background-primary text-q-text-primary">
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
@@ -203,6 +182,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <HeadContent />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>

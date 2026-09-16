@@ -1,6 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import "../lpcb-styles.css";
+
+const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL?.trim() || "";
+const CONTACT_PHONE = import.meta.env.VITE_CONTACT_PHONE?.trim() || "";
+const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT?.trim() || "";
+const FORM_ENABLED = /^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(FORM_ENDPOINT);
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -28,10 +33,6 @@ function Nav() {
     <nav className="luna-nav" role="banner">
       <a href="#" className="luna-nav-logo" aria-label="Luna Pool Co. — home">
         <LogoSvg />
-        <span className="luna-nav-name">
-          <span className="luna-nav-name-luna">Luna</span>
-          <span className="luna-nav-name-co">Pool Co.</span>
-        </span>
       </a>
       <div className="luna-nav-right">
         <a href="#services" className="luna-nav-link">Services</a>
@@ -49,7 +50,7 @@ function Hero() {
       <div className="luna-hero-bg">
         {/* Hero image — replace src with actual photo before launch */}
         <img
-          src="/assets/hero.webp"
+          src={`${import.meta.env.BASE_URL}assets/hero.webp`}
           alt=""
           className="luna-hero-img"
           loading="eager"
@@ -82,27 +83,27 @@ function Hero() {
 function Services() {
   const services = [
     {
-      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />`,
+      icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
       title: "Routine Cleaning",
       desc: "Regular skimming, vacuuming, brushing and water level checks to keep your pool clean and inviting every week.",
     },
     {
-      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />`,
+      icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z",
       title: "Water Testing & Chemicals",
       desc: "Professional water testing with precise adjustments to pH, chlorine and alkalinity, keeping your water safe and clear.",
     },
     {
-      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.786.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.786-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.786-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z" />`,
+      icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.786.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.786-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.786-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z",
       title: "Filter & Pump Checks",
       desc: "Regular inspection and backwashing of filters and pump equipment to maintain proper circulation and water quality.",
     },
     {
-      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />`,
+      icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z",
       title: "Pre-Event Preparation",
       desc: "Pool tuning ahead of special occasions, guest arrivals or gatherings — so your pool is always ready when you need it.",
     },
     {
-      icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />`,
+      icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2",
       title: "Equipment Troubleshooting",
       desc: "Diagnosis of pump, filter and circulation issues — with clear communication about what needs attention and what options are available.",
     },
@@ -147,33 +148,14 @@ function HowWeWork() {
             <h2 id="how-heading" className="luna-h2 mt-3">
               Clear process.<br />Honest communication.
             </h2>
-            <p className="luna-body mt-4">
-              We begin with an initial assessment of your pool and equipment.
-              From there, we agree on a regular maintenance schedule that suits
-              your property and usage.
-            </p>
-            <p className="luna-body mt-4">
-              Each visit is recorded and you'll receive clear updates whenever
-              something needs attention or a decision is required.
-            </p>
-            {/* Flagged for approval before launch */}
-            <div className="luna-approval-box" role="note">
-              <p className="luna-approval-label">
-                <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" /></svg>
-                Awaiting your confirmation
-              </p>
-              <p className="luna-approval-text">
-                The commitments above describe the proposed service model. Please
-                review and confirm before this section goes live.
-              </p>
-            </div>
+            <p className="luna-body mt-4">Tell us about your pool, the care you need and your preferred schedule so we can discuss a suitable service.</p>
           </div>
           <div className="luna-how-steps" role="list">
             {[
-              { step: "01", title: "Initial Assessment", desc: "We visit your property, review the pool and equipment, and understand your setup and preferences." },
-              { step: "02", title: "Agreed Schedule", desc: "We agree on a regular visit schedule — weekly or as needed — that fits your property." },
-              { step: "03", title: "Recorded Visits", desc: "Each service visit is noted, with any observations or concerns passed on to you promptly." },
-              { step: "04", title: "Clear Updates", desc: "If something needs attention, parts, or a decision, we tell you directly — no surprises." },
+              { step: "01", title: "Your Pool", desc: "Tell us about your pool and equipment." },
+              { step: "02", title: "Your Needs", desc: "Let us know which services you are interested in." },
+              { step: "03", title: "Your Schedule", desc: "Share your preferred timing and frequency." },
+              { step: "04", title: "Next Steps", desc: "Discuss the options and agree on the scope before work begins." },
             ].map((item) => (
               <div className="luna-how-step" key={item.step} role="listitem">
                 <span className="luna-how-step-num" aria-hidden="true">{item.step}</span>
@@ -226,19 +208,24 @@ function Enquiry() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!FORM_ENABLED || status === "submitting") return;
+    const gotcha = String(new FormData(formRef.current!).get("_gotcha") || "");
+    if (gotcha) return;
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
     setStatus("submitting");
 
-    // NOTE: Replace FORM_ENDPOINT with your actual Formspree / Web3Forms / etc. URL
-    const FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 
     try {
       const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
+        signal: AbortSignal.timeout(15000),
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
+          _gotcha: gotcha,
+          email: form.contactMethod === "email" ? form.email : undefined,
+          contactMethod: form.contactMethod,
           name: form.name,
           contact: form.contactMethod === "email" ? form.email : form.phone,
           parish: form.parish,
@@ -265,9 +252,9 @@ function Enquiry() {
             <svg width="40" height="40" fill="none" stroke="var(--luna-navy)" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h2 className="luna-h2 luna-h2--dark mt-4">Message received.</h2>
+            <h2 id="enquiry-heading" className="luna-h2 luna-h2--dark mt-4">Message received.</h2>
             <p className="luna-body luna-body--dark mt-2">
-              Thank you — we'll be in touch shortly.
+              Thank you for your enquiry.
             </p>
             <button className="luna-btn luna-btn--outline-dark mt-6" onClick={() => setStatus("idle")}>
               Send another message
@@ -288,27 +275,25 @@ function Enquiry() {
               Tell us about your pool.
             </h2>
             <p className="luna-body luna-body--dark mt-4">
-              Fill in the form and we'll come back to you with more information.
-              No pressure — just a straightforward conversation about what your
-              pool needs.
+{FORM_ENABLED ? "Fill in the form to discuss what your pool needs." : "Online enquiries are not available yet."}
             </p>
             <div className="luna-contact-chips mt-8" role="list">
-              <a href="tel:+14490000000" className="luna-chip" role="listitem">
+              {CONTACT_PHONE && <a href={`tel:${CONTACT_PHONE.replace(/[^+0-9]/g, "")}`} className="luna-chip" role="listitem">
                 <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                Request a call back
-              </a>
-              <a href="mailto:hello@hunapool.com" className="luna-chip" role="listitem">
+                Call {CONTACT_PHONE}
+              </a>}
+              {CONTACT_EMAIL && <a href={`mailto:${CONTACT_EMAIL}`} className="luna-chip" role="listitem">
                 <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                hello@hunapool.com
-              </a>
+                {CONTACT_EMAIL}
+              </a>}
             </div>
           </div>
 
-          <form
+          {FORM_ENABLED && <form
             ref={formRef}
             onSubmit={handleSubmit}
             noValidate
@@ -453,7 +438,7 @@ function Enquiry() {
 
             {status === "error" && (
               <div className="luna-form-error-global" role="alert">
-                Something went wrong. Please try again or email us directly.
+                Your enquiry could not be sent. Please try again.
               </div>
             )}
 
@@ -465,7 +450,7 @@ function Enquiry() {
             >
               {status === "submitting" ? "Sending…" : "Send Enquiry"}
             </button>
-          </form>
+          </form>}
         </div>
       </div>
     </section>
@@ -478,7 +463,7 @@ function Footer() {
   return (
     <footer className="luna-footer" role="contentinfo">
       <div className="luna-footer-inner">
-        <LogoSvg size={28} />
+        <LogoSvg size={200} />
         <p className="luna-footer-name">Luna Pool Co.</p>
         <p className="luna-footer-location">Bermuda</p>
         <p className="luna-footer-copy">
@@ -490,29 +475,6 @@ function Footer() {
 }
 
 /* ─── Logo SVG ─── */
-function LogoSvg({ size = 32 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size * 0.6}
-      viewBox="0 0 80 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-    >
-      {/* Ivory crescent */}
-      <circle cx="24" cy="24" r="18" fill="var(--luna-cream)" opacity="0.15" />
-      <path
-        d="M24 6a18 18 0 0 1 0 36 14 14 0 0 0 0-36z"
-        fill="var(--luna-cream)"
-      />
-      {/* Teal Bermuda silhouette */}
-      <path
-        d="M8 36 Q10 30 14 32 Q16 28 20 30 Q24 24 28 26 Q32 22 36 24 Q38 20 42 22 Q44 18 48 20 L50 20 L50 40 L8 40 Z"
-        fill="var(--luna-teal)"
-        opacity="0.8"
-      />
-    </svg>
-  );
+function LogoSvg({ size = 112 }: { size?: number }) {
+  return <img src={`${import.meta.env.BASE_URL}assets/luna-logo.svg`} width={size} height={size * 1536 / 2688} alt="Luna Pool Co." style={{ objectFit: "contain", borderRadius: "4px" }} />;
 }

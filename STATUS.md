@@ -4,7 +4,7 @@ GitHub Pages publishes the fresh app/dist artifact from GitHub Actions. Build wi
 
 Validation: app build includes UI checks, route generation and TypeScript checking. Run bun run test from app. Two existing full-repository lint errors remain in src/components/ui/carousel.tsx and src/hooks/use-mobile.ts (set-state-in-effect). The obsolete landing-content schema test was removed because the homepage no longer consumes that template; route and other template tests remain.
 
-Pending owner input: verified business email and phone, real Formspree endpoint and inbox receipt test, and confirmation that public/assets/luna-logo.svg is the final approved artwork. The existing file is now displayed without altering its artwork.
+Pending owner input: verified business email and phone, real Formspree endpoint and inbox receipt test, The owner supplied LPCB Logo.jpg, now stored as public/assets/luna-pool-co-approved.jpg. The header frames the original emblem and lettering side by side; the footer displays the complete original artwork.
 
 Set public GitHub Actions repository variables VITE_CONTACT_EMAIL, VITE_CONTACT_PHONE, VITE_FORM_ENDPOINT, then rerun deployment. Blank contact values are hidden. The form stays hidden unless the endpoint is a Formspree form URL. Never put private API keys in VITE variables. Do not claim enquiry delivery until receipt is verified.
 

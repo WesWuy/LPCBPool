@@ -32,7 +32,7 @@ function Nav() {
   return (
     <nav className="luna-nav" role="banner">
       <a href="#" className="luna-nav-logo" aria-label="Luna Pool Co. — home">
-        <LogoSvg />
+        <BrandLogo />
       </a>
       <div className="luna-nav-right">
         <a href="#services" className="luna-nav-link">Services</a>
@@ -463,9 +463,7 @@ function Footer() {
   return (
     <footer className="luna-footer" role="contentinfo">
       <div className="luna-footer-inner">
-        <LogoSvg size={200} />
-        <p className="luna-footer-name">Luna Pool Co.</p>
-        <p className="luna-footer-location">Bermuda</p>
+        <BrandLogo full />
         <p className="luna-footer-copy">
           &copy; {year} Luna Pool Co. All rights reserved.
         </p>
@@ -474,7 +472,14 @@ function Footer() {
   );
 }
 
-/* ─── Logo SVG ─── */
-function LogoSvg({ size = 112 }: { size?: number }) {
-  return <img src={`${import.meta.env.BASE_URL}assets/luna-logo.svg`} width={size} height={size * 1536 / 2688} alt="Luna Pool Co." style={{ objectFit: "contain", borderRadius: "4px" }} />;
+/* The supplied artwork stays intact; CSS frames its emblem and lettering for the header. */
+function BrandLogo({ full = false }: { full?: boolean }) {
+  const src = import.meta.env.BASE_URL + "assets/luna-pool-co-approved.jpg";
+  if (full) return <img className="luna-brand-full" src={src} width={280} height={211} alt="Luna Pool Co. Bermuda" />;
+  return (
+    <span className="luna-brand" aria-hidden="true">
+      <span className="luna-brand-emblem"><img src={src} alt="" width={1024} height={773} /></span>
+      <span className="luna-brand-wordmark"><img src={src} alt="" width={1024} height={773} /></span>
+    </span>
+  );
 }

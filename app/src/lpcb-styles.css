@@ -1,0 +1,193 @@
+/* LPCB brand CSS variables */
+:root {
+  --lpcb-navy: #011d42;
+  --lpcb-cream: #fdf3da;
+  --lpcb-teal: #77bdbb;
+  --lpcb-ink: #0a1f3c;
+  --lpcb-muted: #8ba3b8;
+}
+
+.lpcb-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: color-mix(in srgb, var(--lpcb-navy) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.lpcb-nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lpcb-nav-cta {
+  border-radius: 9999px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 200ms;
+  background: var(--lpcb-teal);
+  color: var(--lpcb-navy);
+  text-decoration: none;
+  display: inline-block;
+}
+.lpcb-nav-cta:hover {
+  background: var(--lpcb-cream);
+  color: var(--lpcb-navy);
+  transform: translateY(-1px);
+}
+
+.lpcb-section {
+  padding: 5rem 1.5rem;
+}
+@media (min-width: 768px) {
+  .lpcb-section { padding-left: 3rem; padding-right: 3rem; }
+}
+@media (min-width: 1024px) {
+  .lpcb-section { padding-left: 5rem; padding-right: 5rem; }
+}
+
+.lpcb-services-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .lpcb-services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .lpcb-services-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.lpcb-service-card {
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all 200ms;
+  background: color-mix(in srgb, var(--lpcb-navy) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lpcb-teal) 25%, transparent);
+}
+.lpcb-service-card:hover {
+  border-color: color-mix(in srgb, var(--lpcb-teal) 50%, transparent);
+  transform: translateY(-4px);
+}
+
+.lpcb-service-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--lpcb-teal) 18%, transparent);
+  color: var(--lpcb-teal);
+}
+
+.lpcb-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lpcb-teal);
+}
+.lpcb-eyebrow--dark { color: var(--lpcb-navy); }
+
+.lpcb-h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--lpcb-cream);
+}
+@media (min-width: 768px) { .lpcb-h2 { font-size: 2.25rem; } }
+.lpcb-h2--dark { color: var(--lpcb-navy); }
+
+.lpcb-h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--lpcb-cream);
+}
+.lpcb-h3--dark { color: var(--lpcb-navy); }
+
+.lpcb-body {
+  font-size: 1rem;
+  line-height: 1.625;
+  color: color-mix(in srgb, var(--lpcb-cream) 75%, transparent);
+}
+.lpcb-body--dark { color: color-mix(in srgb, var(--lpcb-navy) 70%, transparent); }
+
+.lpcb-contact-band { background: var(--lpcb-teal); }
+
+.lpcb-contact-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: all 200ms;
+  background: var(--lpcb-navy);
+  color: var(--lpcb-cream);
+  text-decoration: none;
+}
+.lpcb-contact-cta:hover {
+  background: var(--lpcb-cream);
+  color: var(--lpcb-navy);
+  transform: translateY(-2px);
+}
+
+.lpcb-footer {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  background: var(--lpcb-navy);
+  border-top: 1px solid color-mix(in srgb, var(--lpcb-teal) 20%, transparent);
+}
+
+.lpcb-pill-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.lpcb-pill-dot {
+  margin-top: 0.25rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lpcb-teal);
+}
+.lpcb-pill-label {
+  font-weight: 600;
+  color: var(--lpcb-cream);
+}
+.lpcb-pill-detail {
+  font-size: 0.875rem;
+  color: color-mix(in srgb, var(--lpcb-cream) 65%, transparent);
+}
+
+.lpcb-editorial-img {
+  border-radius: 1rem;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.lpcb-editorial-img--wide {
+  aspect-ratio: 21/9;
+  border-radius: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}

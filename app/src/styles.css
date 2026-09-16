@@ -19,6 +19,7 @@
 @import "./components/setting-trigger/setting-trigger.css";
 @import "./components/prompt-box/prompt-box.css";
 @import "./components/icon-tile/icon-tile.css";
+@import "./lpcb-styles.css";
 
 @import "tw-animate-css";
 /* shadcn v4 base (scrollbar/scroll-fade utilities, toast base) for src/components/ui */

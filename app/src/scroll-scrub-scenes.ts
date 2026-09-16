@@ -1,41 +1,62 @@
-/**
- * Scene data for the scroll-scrub journey — THE file you fill in per build.
- *
- * Single-shot (the default): ONE entry in `scenes`, whose `clip` is the single
- * continuous film. Chapter copy still comes from `chapters` below, rendered as
- * semantic sections over that one clip.
- *
- * Multi-leg (opt-in): one entry per seam-locked leg, in journey order. Every
- * `poster` MUST be the exact first frame of the encoded clip beside it — never
- * a design board or an imagined destination still.
- *
- * Keep this array a module constant. Changing its identity on every render
- * intentionally rebuilds the media controller.
- */
 import type {
   ScrollScrubScene,
   ScrollScrubTheme,
 } from "@/components/scroll-scrub/scroll-scrub";
 
-/** Brand tokens for the journey layer. Set these from the design brief. */
 export const scrollScrubTheme: ScrollScrubTheme = {
-  accent: "<accent hex>",
-  background: "<background hex>",
-  ink: "<ink hex>",
-  muted: "<muted ink hex>",
+  accent: "#77bdbb",
+  background: "#fdf3da",
+  ink: "#0a1f3c",
+  muted: "#8ba3b8",
 };
 
 export const scrollScrubScenes: ScrollScrubScene[] = [
   {
-    body: "<one sentence that earns the next scroll>",
+    body: "A perfectly maintained pool is always ready — so you never have to think about it.",
     clip: "/assets/world/scene-01.mp4",
     id: "scene-01",
-    kicker: "<kicker>",
-    label: "<nav label>",
-    mobileClip: "/assets/world/scene-01-mobile.mp4",
-    mobilePoster: "/assets/world/scene-01-mobile-poster.png",
+    kicker: "LPCB · Bermuda",
+    label: "Surface",
+    mobileClip: "/assets/world/scene-01.mp4",
+    mobilePoster: "/assets/world/scene-01-poster.png",
     poster: "/assets/world/scene-01-poster.png",
-    tags: ["<proof tag>"],
-    title: "<scene headline>",
+    tags: ["Crystal Clear"],
+    title: "Crystal Clear, Every Day.",
+  },
+  {
+    body: "Weekly visits from our certified technicians keep your water balanced and your equipment running perfectly.",
+    clip: "/assets/world/scene-02.mp4",
+    id: "scene-02",
+    kicker: "The Ready Pool",
+    label: "Ready",
+    mobileClip: "/assets/world/scene-02.mp4",
+    mobilePoster: "/assets/world/scene-02-poster.png",
+    poster: "/assets/world/scene-02-poster.png",
+    tags: ["Professional Care"],
+    title: "Professional maintenance, worry-free.",
+  },
+  {
+    body: "We handle everything — chemicals, filters, pumps — so you can just enjoy your pool.",
+    clip: "/assets/world/scene-03.mp4",
+    id: "scene-03",
+    kicker: "The Care in Action",
+    label: "Care",
+    mobileClip: "/assets/world/scene-03.mp4",
+    mobilePoster: "/assets/world/scene-03-poster.png",
+    poster: "/assets/world/scene-03-poster.png",
+    tags: ["Full Service"],
+    title: "Every detail, handled.",
+  },
+  {
+    body: "From Warwick to St. George's, we serve pools across all of Bermuda.",
+    clip: "/assets/world/scene-04.mp4",
+    id: "scene-04",
+    kicker: "Bermuda-First",
+    label: "Bermuda",
+    mobileClip: "/assets/world/scene-04.mp4",
+    mobilePoster: "/assets/world/scene-04-poster.png",
+    poster: "/assets/world/scene-04-poster.png",
+    tags: ["All Bermuda"],
+    title: "Your pool. Your family. Pure joy.",
   },
 ];

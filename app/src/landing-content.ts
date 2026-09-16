@@ -1,100 +1,74 @@
-import { parseLandingContent } from "@higgsfield/app-landing";
-
-const TEMPLATE_PREVIEW = "/assets/landing/template-preview.svg";
-
-// TEMPLATE DEMO CONTENT. Replace it from the product AppBrief together with
-// product-specific step UI and owned result/showcase media before shipping.
-export const landingContent = parseLandingContent({
+export const landingContent = {
   hero: {
-    eyebrow: "Your focused workspace",
-    title: "Turn complex work into a clear, repeatable flow",
+    eyebrow: "LPCB · Bermuda",
+    title: "Crystal Clear, Every Day.",
     description:
-      "Organize the important work, keep progress visible and move from idea to done without losing context.",
-    primaryCta: { label: "Open app", href: "/app" },
-    secondaryCta: { label: "See how it works", href: "#how-it-works" },
+      "Professional pool maintenance for Bermuda homeowners and hospitality businesses. Weekly service, chemical balancing, and full equipment care — so your pool is always ready.",
+    primaryCta: { label: "Get a Free Quote", href: "#contact" },
+    secondaryCta: { label: "Our Services", href: "#services" },
   },
   preview: {
-    kind: "route",
-    title: "Interactive app preview",
-    src: "/app?preview=1",
-    openHref: "/app",
-    openLabel: "Open full app",
+    kind: "none",
   },
   steps: {
-    title: "Move forward in 3 easy steps",
-    description: "A focused workflow that keeps the next action obvious.",
+    title: "Complete pool care, covered",
+    description: "Everything your pool needs — handled by certified professionals.",
     items: [
       {
-        title: "Capture the work",
-        description: "Add the items, files or ideas that need your attention.",
-        preview: {
-          kind: "instruction",
-          icon: "layers",
-          title: "Open your workspace",
-          description: "Add the first item, file or idea",
-        },
+        title: "Weekly Maintenance",
+        description:
+          "Regular cleaning, skimming, vacuuming, and water level checks to keep your pool pristine every week.",
+        preview: { kind: "icon", icon: "sparkles" },
       },
       {
-        title: "Shape the workflow",
-        description: "Organize priorities and choose the controls that fit your process.",
-        preview: {
-          kind: "action",
-          label: "Open app",
-        },
+        title: "Chemical Balancing",
+        description:
+          "Professional water testing and precise chemical adjustments — pH, chlorine, alkalinity — for safe, crystal-clear water.",
+        preview: { kind: "icon", icon: "flask" },
       },
       {
-        title: "Finish with confidence",
-        description: "Track progress, review the result and keep the next step moving.",
-        preview: {
-          kind: "result",
-          media: { kind: "image", src: TEMPLATE_PREVIEW, alt: "Completed workflow" },
-        },
+        title: "Filter & Equipment",
+        description:
+          "Full pump, filter, and heater inspection and service to keep your equipment running efficiently year-round.",
+        preview: { kind: "icon", icon: "settings" },
       },
     ],
   },
   features: {
-    title: "Built for seamless progress",
+    title: "Why Bermuda trusts LPCB",
     description:
-      "The essential controls stay visible while secondary complexity stays out of the way.",
+      "Local expertise, certified technicians, and a commitment to excellence that keeps pools across the island in perfect condition.",
     items: [
       {
-        icon: "layers",
-        title: "Clear structure",
-        description: "Keep related work together in a workspace that is easy to scan.",
+        icon: "shield",
+        title: "Certified & Insured",
+        description:
+          "Every technician is fully certified and we carry comprehensive liability insurance for your peace of mind.",
       },
       {
-        icon: "sliders",
-        title: "Flexible controls",
-        description: "Adapt views and settings to the task without crowding the main surface.",
+        icon: "map",
+        title: "All Bermuda Covered",
+        description:
+          "From St. George's to Somerset, we service pools across every parish on the island.",
       },
       {
-        icon: "check",
-        title: "Visible progress",
-        description: "Understand what changed, what is active and what needs attention next.",
+        icon: "clock",
+        title: "Same-Week Response",
+        description:
+          "Equipment issues don't wait — neither do we. We prioritize fast response for all service calls.",
       },
     ],
   },
   showcase: {
-    title: "See the workspace in action",
-    description: "Explore the product's most important flows before opening the full app.",
-    items: [
-      {
-        label: "Overview",
-        media: { kind: "image", src: TEMPLATE_PREVIEW, alt: "Workspace overview" },
-      },
-      {
-        label: "Focused workflow",
-        media: { kind: "image", src: TEMPLATE_PREVIEW, alt: "Focused workflow view" },
-      },
-      {
-        label: "Progress review",
-        media: { kind: "image", src: TEMPLATE_PREVIEW, alt: "Progress review view" },
-      },
-    ],
+    title: "Pools we care for",
+    description:
+      "Residential villas, boutique hotels, and commercial properties across Bermuda.",
+    items: [],
   },
   finalCta: {
-    title: "Ready to move your work forward?",
-    description: "Open the full workspace and start with the task that matters most.",
-    action: { label: "Open app", href: "/app" },
+    title: "Ready for a pool that's always ready?",
+    description:
+      "Get a free quote for your property. No obligation — just crystal-clear water.",
+    action: { label: "Request a Free Quote", href: "#contact" },
   },
-});
+};

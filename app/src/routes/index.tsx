@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import "../lpcb-styles.css";
 
-const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL?.trim() || "";
-const CONTACT_PHONE = import.meta.env.VITE_CONTACT_PHONE?.trim() || "";
+const CONTACT_EMAIL = "hi@lunapool.bm";
+const CONTACT_PHONE = "+1 441 705-7742";
 const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT?.trim() || "";
 const FORM_ENABLED = /^https:\/\/formspree\.io\/f\/[a-z0-9]+$/i.test(FORM_ENDPOINT);
 

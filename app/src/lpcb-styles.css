@@ -348,6 +348,61 @@
   color: color-mix(in srgb, var(--luna-cream) 65%, transparent);
 }
 
+/* ─── Hero Stats Bar ─── */
+.luna-hero-stats {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-top: 2.5rem;
+  padding: 1.25rem 2rem;
+  background: color-mix(in srgb, var(--luna-navy) 60%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, var(--luna-teal) 20%, transparent);
+  width: fit-content;
+  max-width: 100%;
+}
+
+.luna-hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+}
+
+.luna-hero-stat-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--luna-cream);
+  white-space: nowrap;
+}
+
+.luna-hero-stat-label {
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--luna-cream) 55%, transparent);
+  white-space: nowrap;
+  margin-top: 0.15rem;
+}
+
+.luna-hero-stat-divider {
+  width: 1px;
+  height: 2rem;
+  background: color-mix(in srgb, var(--luna-teal) 30%, transparent);
+  flex-shrink: 0;
+}
+
+@media (max-width: 560px) {
+  .luna-hero-stats { flex-direction: column; gap: 0.5rem; padding: 1rem 1.5rem; }
+  .luna-hero-stat { padding: 0.25rem 1rem; }
+  .luna-hero-stat-divider { width: 80%; height: 1px; }
+}
+
 /* ─── Approval notice ─── */
 .luna-approval-box {
   margin-top: 1.75rem;
@@ -549,6 +604,301 @@
   color: color-mix(in srgb, var(--luna-cream) 40%, transparent);
   margin-top: 0.5rem;
 }
+
+.luna-btn--outline-light {
+  background: transparent;
+  color: var(--luna-cream);
+  border-color: color-mix(in srgb, var(--luna-cream) 50%, transparent);
+}
+.luna-btn--outline-light:hover {
+  background: color-mix(in srgb, var(--luna-cream) 15%, transparent);
+  border-color: var(--luna-cream);
+  color: var(--luna-cream);
+}
+
+.luna-label--dark {
+  color: var(--luna-navy);
+}
+.luna-label--dark span {
+  color: var(--luna-navy);
+}
+
+.luna-form-placeholder {
+  padding: 2rem;
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--luna-navy) 8%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--luna-navy) 25%, transparent);
+  text-align: center;
+}
+
+/* ─── Built for Bermuda ─── */
+.luna-bermuda-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .luna-bermuda-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.luna-bermuda-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  background: white;
+  border: 1px solid color-mix(in srgb, var(--luna-navy) 12%, transparent);
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--luna-navy) 6%, transparent);
+}
+
+.luna-bermuda-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--luna-navy) 8%, transparent);
+  color: var(--luna-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.luna-bermuda-icon svg { width: 1.5rem; height: 1.5rem; }
+
+.luna-parishes {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid color-mix(in srgb, var(--luna-navy) 15%, transparent);
+  text-align: center;
+}
+.luna-parishes-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--luna-navy) 45%, transparent);
+  margin-bottom: 0.75rem;
+}
+.luna-parishes-list {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--luna-navy);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* ─── Plans & Pricing ─── */
+.luna-plans-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+@media (min-width: 640px) {
+  .luna-plans-grid { grid-template-columns: repeat(3, 1fr); align-items: start; }
+}
+
+.luna-plan-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--luna-cream) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--luna-teal) 20%, transparent);
+}
+.luna-plan-card--featured {
+  background: var(--luna-teal);
+  border-color: var(--luna-teal);
+}
+
+.luna-plan-badge {
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--luna-navy);
+  color: var(--luna-cream);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.875rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.luna-plan-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--luna-cream);
+}
+.luna-plan-card--featured .luna-plan-name { color: var(--luna-navy); }
+
+.luna-plan-tagline {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--luna-cream) 65%, transparent);
+}
+.luna-plan-card--featured .luna-plan-tagline { color: color-mix(in srgb, var(--luna-navy) 65%, transparent); }
+
+.luna-plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+.luna-plan-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--luna-cream);
+  font-family: Georgia, "Times New Roman", serif;
+}
+.luna-plan-card--featured .luna-plan-amount { color: var(--luna-navy); }
+.luna-plan-period {
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--luna-cream) 55%, transparent);
+}
+.luna-plan-card--featured .luna-plan-period { color: color-mix(in srgb, var(--luna-navy) 55%, transparent); }
+
+.luna-plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: 0.25rem;
+}
+.luna-plan-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--luna-cream) 70%, transparent);
+}
+.luna-plan-card--featured .luna-plan-feature { color: color-mix(in srgb, var(--luna-navy) 70%, transparent); }
+.luna-plan-feature svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: var(--luna-teal);
+}
+.luna-plan-card--featured .luna-plan-feature svg { color: var(--luna-navy); }
+
+.luna-plan-card .luna-btn {
+  margin-top: 0.5rem;
+}
+
+.luna-plans-note {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: center;
+  color: color-mix(in srgb, var(--luna-cream) 50%, transparent);
+  font-style: italic;
+}
+
+/* ─── Testimonial ─── */
+.luna-testimonial {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+}
+.luna-testimonial-quote {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.15rem, 3vw, 1.4rem);
+  line-height: 1.6;
+  color: var(--luna-navy);
+  font-style: italic;
+  margin: 0 0 1.25rem;
+}
+.luna-testimonial-attribution {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--luna-navy) 55%, transparent);
+}
+
+/* ─── Footer ─── */
+.luna-footer-inner {
+  display: grid;
+  gap: 2.5rem;
+}
+@media (min-width: 640px) {
+  .luna-footer-inner {
+    grid-template-columns: auto 1fr 1fr;
+    text-align: left;
+    align-items: start;
+    max-width: 1100px;
+    margin-inline: auto;
+  }
+}
+
+.luna-footer-nav {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.luna-footer-nav-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.luna-footer-nav-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--luna-cream) 40%, transparent);
+  margin-bottom: 0.25rem;
+}
+
+.luna-footer-link {
+  font-size: 0.875rem;
+  color: color-mix(in srgb, var(--luna-cream) 65%, transparent);
+  text-decoration: none;
+  transition: color 150ms;
+}
+.luna-footer-link:hover { color: var(--luna-cream); }
+
+.luna-footer-address {
+  font-size: 0.875rem;
+  color: color-mix(in srgb, var(--luna-cream) 45%, transparent);
+  margin-top: 0.25rem;
+}
+
+.luna-footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.luna-footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--luna-teal) 15%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+.luna-footer-bottom p {
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--luna-cream) 35%, transparent);
+}
+.luna-footer-legal {
+  display: flex;
+  gap: 1.25rem;
+}
+.luna-footer-legal-link {
+  font-size: 0.78rem;
+  color: color-mix(in srgb, var(--luna-cream) 35%, transparent);
+  text-decoration: none;
+}
+.luna-footer-legal-link:hover { color: color-mix(in srgb, var(--luna-cream) 65%, transparent); }
 
 /* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
